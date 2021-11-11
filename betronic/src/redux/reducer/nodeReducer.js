@@ -10,13 +10,7 @@ const nodeReducer = (state = initialState, action) => {
     case ADD_NODE:
       return {
         ...state,
-        route: state.route.map((miniRoute) => {
-          if (miniRoute.id === action.payload.id) {
-            return { ...miniRoute, name: action.payload.inputName, username: action.payload.inputUsername };
-          } else {
-            return miniRoute;
-          }
-        }),
+          route: action.payload.route, nodes: action.payload.nodes, title: action.payload.title
       };
 
     case DEL_NODE:
