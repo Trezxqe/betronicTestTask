@@ -1,11 +1,22 @@
+import AddForm from '../AddForm/AddForm';
 import './App.css';
-import AddFrom from '../AddForm/AddForm'
+import { Provider } from 'react-redux';
+import { store } from '../../redux/reducer/nodeReducer';
+import Ma from '../Ma';
+// import Routing from '../Routing';
+// import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-      <div className="App">
-        <AddFrom />
-      </div>
+    <>
+      <Provider store={store}>
+      {/* <BrowserRouter> */}
+        <AddForm />
+        <Ma />
+        {/* <Routing /> */}
+      {/* </BrowserRouter> */}
+      </Provider>
+    </>
   );
 }
 

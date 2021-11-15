@@ -1,24 +1,30 @@
-import { ADD_NODE, GET_NODE, DEL_NODE} from '../actionTypes/actionTypes';
+import { createStore } from 'redux';
+import { ADD_NODE } from '../actionTypes/actionTypes';
 
-const initialState = { route: `/main`, nodes: [], title: `Main` };
+const initialState = {
+  route: `/main`,
+  nodes: [
+    { title: '1', nodes: [], route: '1' },
+    { title: '2', nodes: [], route: '2' },
+    { title: '3', nodes: [], route: '3' },
+  ],
+  title: `Main`,
+};
 
 const nodeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_NODE:
-      return { ...state, route: action.payload };
-
     case ADD_NODE:
+      console.log(action.payload);
       return {
         ...state,
-          route: action.payload.route, nodes: action.payload.nodes, title: action.payload.title
+        nodes: [...state.nodes, action.payload.state],
       };
-
-    case DEL_NODE:
-      return { ...state, route: state.route.filter((miniRoute) => miniRoute.id !== action.payload) };
-
     default:
       return state;
   }
 };
 
-export default nodeReducer;
+export const store = createStore(
+  nodeReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
